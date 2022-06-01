@@ -290,7 +290,7 @@ bool LatchedStopRotateController::isHeadingCorrectionNeeded(double heading_toler
   double goal_th = atan2((goal_pose.pose.position.y - global_pose.pose.position.y), (goal_pose.pose.position.x - global_pose.pose.position.x));
   double angle = base_local_planner::getGoalOrientationAngleDifference(global_pose, goal_th);
   //check to see if the angle is within heading tolerance
-  if (angle > heading_tolerance) {
+  if (abs(angle) > heading_tolerance) {
     return true;
   }
   return false;
