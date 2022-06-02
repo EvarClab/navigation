@@ -130,7 +130,7 @@ namespace dwa_local_planner {
       nav_core::warnRenamedParameter(private_nh, "acc_lim_trans", "acc_limit_trans");
       nav_core::warnRenamedParameter(private_nh, "theta_stopped_vel", "rot_stopped_vel");
 
-      private_nh.param<double>("path_heading_tolerance", path_heading_tolerance_, 0.5); //SAMUEL  //1.57
+      private_nh.param<double>("path_heading_tolerance", path_heading_tolerance_, 3.14); //SAMUEL  //1.57
 
       dsrv_ = new dynamic_reconfigure::Server<DWAPlannerConfig>(private_nh);
       dynamic_reconfigure::Server<DWAPlannerConfig>::CallbackType cb = boost::bind(&DWAPlannerROS::reconfigureCB, this, _1, _2);
@@ -302,7 +302,7 @@ namespace dwa_local_planner {
           boost::bind(&DWAPlanner::checkTrajectory, dp_, _1, _2, _3));
 //SAMUEL - Check if need to correct heading to the path ---------------------------
     } else if (latchedStopRotateController_.isHeadingCorrectionNeeded(path_heading_tolerance_, &planner_util_, current_pose_)) {
-      ROS_INFO("dwa_local_planner", "HeadingCorrectionNeeded");
+      // ROS_INFO("dwa_local_planner", "HeadingCorrectionNeeded");
       std::vector<geometry_msgs::PoseStamped> local_plan;
       std::vector<geometry_msgs::PoseStamped> transformed_plan;
       publishGlobalPlan(transformed_plan);
