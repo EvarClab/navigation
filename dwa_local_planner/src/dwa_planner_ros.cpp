@@ -130,7 +130,7 @@ namespace dwa_local_planner {
       nav_core::warnRenamedParameter(private_nh, "acc_lim_trans", "acc_limit_trans");
       nav_core::warnRenamedParameter(private_nh, "theta_stopped_vel", "rot_stopped_vel");
 
-      private_nh.param<double>("path_heading_tolerance", path_heading_tolerance_, 0.2); //SAMUEL  //1.57
+      private_nh.param<double>("path_heading_tolerance", path_heading_tolerance_, 0.5); //SAMUEL  //1.57
 
       dsrv_ = new dynamic_reconfigure::Server<DWAPlannerConfig>(private_nh);
       dynamic_reconfigure::Server<DWAPlannerConfig>::CallbackType cb = boost::bind(&DWAPlannerROS::reconfigureCB, this, _1, _2);
